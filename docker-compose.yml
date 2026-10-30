@@ -1,7 +1,9 @@
+name: deploysphere
+
 services:
-  deploylite:
+  deploysphere:
     build: .
-    container_name: deploylite
+    container_name: deploysphere
     ports:
       - "5000:5000"
     environment:

@@ -1,0 +1,34 @@
+name: deploysphere-jenkins
+
+services:
+  jenkins:
+    image: jenkins/jenkins:lts-jdk17
+    container_name: deploysphere-jenkins
+    restart: unless-stopped
+    ports:
+      # Keep the controller UI available only on this Windows machine.
+      - "127.0.0.1:8080:8080"
+    volumes:
+      - jenkins_home:/var/jenkins_home
+
+  agent:
+    image: deploysphere-agent:latest
+    build:
+      context: .
+      dockerfile: Dockerfile.jenkins-agent
+    container_name: deploysphere-agent
+    restart: unless-stopped
+    depends_on:
+      - jenkins
+    env_file:
+      - .env.jenkins-agent
+    environment:
+      JENKINS_URL: http://jenkins:8080
+      JENKINS_AGENT_NAME: deploysphere-agent
+      JENKINS_TUNNEL: jenkins:50000
+    extra_hosts:
+      # Docker Desktop routes this hostname to the Windows host from Linux containers.
+      - "host.docker.internal:host-gateway"
+
+volumes:
+  jenkins_home:

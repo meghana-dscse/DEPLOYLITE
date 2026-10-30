@@ -1,4 +1,4 @@
-name: DeployLite CI
+name: DeploySphere CI
 
 on:
   push:
@@ -11,7 +11,7 @@ permissions:
 
 jobs:
   test-and-build:
-    name: Test Flask app and build Docker image
+    name: Test DeploySphere and build Docker image
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
@@ -31,4 +31,4 @@ jobs:
         run: python -m pytest -v
 
       - name: Build Docker image
-        run: docker build --tag deploylite:ci .
+        run: docker build --tag deploysphere:ci .

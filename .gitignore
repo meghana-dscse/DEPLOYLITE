@@ -1,0 +1,13 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+venv/
+.env
+.env.jenkins-agent
+.env.*
+!.env.example
+*credentials*
+*secret*
+*.pem
+*.key

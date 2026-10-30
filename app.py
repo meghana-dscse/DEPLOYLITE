@@ -1,4 +1,4 @@
-"""DeployLite's lightweight Flask dashboard."""
+"""DeploySphere's lightweight Flask dashboard."""
 
 from flask import Flask, jsonify, render_template
 import os
@@ -23,7 +23,7 @@ def index():
 
 @app.get("/health")
 def health():
-    return jsonify(status="healthy", application="DeployLite", version=VERSION), 200
+    return jsonify(status="healthy", application="DeploySphere", version=VERSION), 200
 
 
 if __name__ == "__main__":
